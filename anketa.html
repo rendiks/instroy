@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Анкета проекта — INSTROY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --btn-beige: #dfc49f; 
+            --btn-beige-hover: #eadaaf; 
+            --text-dark: #1a1a1a; 
+            --bg-light: #fdfdfd; 
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+        body { color: var(--text-dark); background: #fbfbfb; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ШАПКА */
+        header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            background: rgba(0, 0, 0, 0.9); 
+            backdrop-filter: blur(10px); 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .header-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 16px 0; 
+        }
+
+        .logo-text { 
+            font-size: 32px; 
+            font-weight: 700; 
+            color: var(--btn-beige); 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            letter-spacing: 4px; 
+        }
+
+        .header-right { 
+            display: flex; 
+            align-items: center; 
+            gap: 25px; 
+        }
+
+        nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        nav a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-size: 11px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            padding: 10px 24px; 
+            border-radius: 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.25); 
+            background: transparent;
+            transition: var(--transition); 
+            display: inline-block;
+        }
+
+        nav a:hover, nav a.active { 
+            color: #1a1a1a; 
+            background: var(--btn-beige); 
+            border-color: var(--btn-beige); 
+            box-shadow: 0 4px 18px rgba(223, 196, 159, 0.35);
+        }
+
+        .header-phone { 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 14px; 
+            letter-spacing: 1px;
+            margin-left: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .header-phone:hover { color: var(--btn-beige); }
+
+        /* ЗАГОЛОВОК СТРАНИЦЫ */
+        .page-header { padding: 150px 0 50px; background: #111; color: #fff; text-align: center; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 42px; text-transform: uppercase; margin-bottom: 10px; }
+        .page-header p { color: #888; font-size: 15px; }
+
+        /* СТИЛИ ФОРМЫ АНКЕТЫ */
+        .quiz-section { padding: 60px 0 100px; }
+        .quiz-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            padding: 50px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .form-group:last-child { border-bottom: none; }
+
+        .form-label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #1a1a1a;
+        }
+
+        .form-hint {
+            display: block;
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 14px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--btn-beige);
+            box-shadow: 0 0 0 3px rgba(223, 196, 159, 0.25);
+        }
+
+        /* Опции (Radio & Checkbox) */
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .custom-option {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f9f9f9;
+            border: 1px solid #e5e5e5;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-size: 14px;
+        }
+
+        .custom-option:hover {
+            background: #f2efe9;
+            border-color: var(--btn-beige);
+        }
+
+        .custom-option input {
+            margin-right: 12px;
+            accent-color: #b5956a;
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Кнопка отправки */
+        .btn-submit {
+            display: block;
+            width: 100%;
+            padding: 18px;
+            background: var(--btn-beige);
+            color: #1a1a1a;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-top: 30px;
+        }
+
+        .btn-submit:hover {
+            background: var(--btn-beige-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        footer { background: #111; color: rgba(255,255,255,0.5); padding: 40px 0; text-align: center; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .quiz-card { padding: 25px 20px; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА С ОБНОВЛЕННОЙ НАВИГАЦИЕЙ -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo-text">INSTROY</a>
+                <div class="header-right">
+                    <nav>
+                        <a href="services.html">Услуги</a>
+                        <a href="anketa.html" class="active">Анкета</a>
+                        <a href="contacts.html">Контакты</a>
+                    </nav>
+                    <a href="tel:+79199282678" class="header-phone">8 (919) 928-26-78</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Анкета для проекта</h1>
+            <p>Заполните параметры вашего объекта для точной оценки и начала работы</p>
+        </div>
+    </div>
+
+    <section class="quiz-section">
+        <div class="container">
+            <div class="quiz-card">
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    
+                    <!-- 1. Имя -->
+                    <div class="form-group">
+                        <label class="form-label">1. Имя</label>
+                        <span class="form-hint">Укажите ваше ФИО</span>
+                        <input type="text" name="ФИО" class="form-control" placeholder="Иванов Иван Иванович" required>
+                    </div>
+
+                    <!-- 2. Адрес объекта -->
+                    <div class="form-group">
+                        <label class="form-label">2. Адрес объекта</label>
+                        <span class="form-hint">Укажите адрес квартиры (улица, номер дома и квартиры)</span>
+                        <input type="text" name="Адрес_объекта" class="form-control" placeholder="г. Тюмень, ул. Ленина, д. 10, кв. 25" required>
+                    </div>
+
+                    <!-- 3. План помещения -->
+                    <div class="form-group">
+                        <label class="form-label">3. Есть ли план помещения?</label>
+                        <span class="form-hint">План помещения от застройщика или планировка</span>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="План_помещения" value="Да, есть план" required> Да, есть</label>
+                            <label class="custom-option"><input type="radio" name="План_помещения" value="Нет плана"> Нет</label>
+                            <label class="custom-option"><input type="radio" name="План_помещения" value="Нужен замер"> Нужен замер</label>
+                        </div>
+                    </div>
+
+                    <!-- 4. Добавить розетки -->
+                    <div class="form-group">
+                        <label class="form-label">4. Нужно ли добавить розетки?</label>
+                        <span class="form-hint">Если нужно добавить или перенести розетки (например, для ТВ-зоны)</span>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="Добавить_розетки" value="Да" required> Да</label>
+                            <label class="custom-option"><input type="radio" name="Добавить_розетки" value="Нет"> Нет</label>
+                            <label class="custom-option"><input type="radio" name="Добавить_розетки" value="По проекту дизайнера"> На усмотрение мастера</label>
+                        </div>
+                    </div>
+
+                    <!-- 5. Перенести выключатели -->
+                    <div class="form-group">
+                        <label class="form-label">5. Нужно ли перенести выключатели?</label>
+                        <span class="form-hint">Если нужно поднять от пола или перенести в другое место</span>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="Перенос_выключателей" value="Да" required> Да</label>
+                            <label class="custom-option"><input type="radio" name="Перенос_выключателей" value="Нет"> Нет</label>
+                        </div>
+                    </div>
+
+                    <!-- 6. Покрытие стен -->
+                    <div class="form-group">
+                        <label class="form-label">6. Какое хотите покрытие стен?</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="Покрытие_стен" value="Обои" required> Обои</label>
+                            <label class="custom-option"><input type="radio" name="Покрытие_стен" value="Краска"> Краска</label>
+                            <label class="custom-option"><input type="radio" name="Покрытие_стен" value="Декоративная штукатурка"> Декоративная штукатурка</label>
+                            <label class="custom-option"><input type="radio" name="Покрытие_стен" value="Комбинированное"> Комбинированное</label>
+                        </div>
+                    </div>
+
+                    <!-- 7. Цветовая гамма -->
+                    <div class="form-group">
+                        <label class="form-label">7. Цветовая гамма</label>
+                        <span class="form-hint">Напишите несколько цветов, которые хотите видеть в интерьере</span>
+                        <input type="text" name="Цветовая_гамма" class="form-control" placeholder="Например: бежевый, серый, акцентный синий">
+                    </div>
+
+                    <!-- 8. Кондиционер -->
+                    <div class="form-group">
+                        <label class="form-label">8. Нужен ли кондиционер?</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="Кондиционер" value="Да" required> Да</label>
+                            <label class="custom-option"><input type="radio" name="Кондиционер" value="Нет"> Нет</label>
+                        </div>
+                    </div>
+
+                    <!-- 9. Напольное покрытие -->
+                    <div class="form-group">
+                        <label class="form-label">9. Напольное покрытие</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="Напольное_покрытие" value="Кварцвинил" required> Кварцвинил</label>
+                            <label class="custom-option"><input type="radio" name="Напольное_покрытие" value="Ламинат"> Ламинат</label>
+                            <label class="custom-option"><input type="radio" name="Напольное_покрытие" value="Паркет / Инженерная доска"> Паркетная доска</label>
+                        </div>
+                    </div>
+
+                    <!-- 10. Плитка в прихожей -->
+                    <div class="form-group">
+                        <label class="form-label">10. Будет ли плитка в зоне прихожей?</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="Плитка_в_прихожей" value="Да" required> Да</label>
+                            <label class="custom-option"><input type="radio" name="Плитка_в_прихожей" value="Нет"> Нет</label>
+                        </div>
+                    </div>
+
+                    <!-- 11. Керамогранит для санузла -->
+                    <div class="form-group">
+                        <label class="form-label">11. Выберите керамогранит для сан. узла</label>
+                        <span class="form-hint">Основной стиль/текстура</span>
+                        <select name="Керамогранит_основной" class="form-control">
+                            <option value="">-- Выберите вариант --</option>
+                            <option value="Под мрамор (светлый)">Под мрамор (светлый)</option>
+                            <option value="Под мрамор (темный)">Под мрамор (темный)</option>
+                            <option value="Под бетон / цемент">Под бетон / цемент</option>
+                            <option value="Под дерево">Под дерево</option>
+                            <option value="Однотонный минимализм">Однотонный минимализм</option>
+                        </select>
+                    </div>
+
+                    <!-- 12. Акцентный керамогранит -->
+                    <div class="form-group">
+                        <label class="form-label">12. Выберите акцентный керамогранит для сан. узла</label>
+                        <span class="form-hint">Второй вариант керамогранита (например, в зону зеркала или душа)</span>
+                        <select name="Керамогранит_акцентный" class="form-control">
+                            <option value="">-- Выберите вариант --</option>
+                            <option value="Деревянная рейка / текстура дерева">Текстура дерева</option>
+                            <option value="Мозаика / Геометрия">Мозаика / Геометрический узор</option>
+                            <option value="Темный контрастный мрамор">Темный контрастный мрамор</option>
+                            <option value="Яркий акцентный цвет">Яркий акцентный цвет</option>
+                            <option value="Без акцента">Без акцента (один вид плитки)</option>
+                        </select>
+                    </div>
+
+                    <!-- 13. Теплый пол -->
+                    <div class="form-group">
+                        <label class="form-label">13. Теплый пол</label>
+                        <span class="form-hint">Выберите зоны, где требуется укладка теплого пола</span>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="checkbox" name="Теплый_пол[]" value="Прихожая"> Прихожая</label>
+                            <label class="custom-option"><input type="checkbox" name="Теплый_пол[]" value="Сан. узел"> Сан. узел</label>
+                            <label class="custom-option"><input type="checkbox" name="Теплый_пол[]" value="Балкон"> Балкон</label>
+                            <label class="custom-option"><input type="checkbox" name="Теплый_пол[]" value="Кухня"> Кухня</label>
+                        </div>
+                    </div>
+
+                    <!-- 14. Фартук для кухни -->
+                    <div class="form-group">
+                        <label class="form-label">14. Нужен ли фартук для кухни?</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="Фартук_кухни" value="Да" required> Да</label>
+                            <label class="custom-option"><input type="radio" name="Фартук_кухни" value="Нет"> Нет</label>
+                        </div>
+                    </div>
+
+                    <!-- Контактный телефон для связи -->
+                    <div class="form-group">
+                        <label class="form-label">Телефон для обратной связи</label>
+                        <input type="tel" name="Телефон" class="form-control" placeholder="+7 (999) 000-00-00" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Отправить анкету</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 INSTROY. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

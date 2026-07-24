@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Наши пакеты отделки — INSTROY</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --btn-beige: #dfc49f; 
+            --btn-beige-hover: #eadaaf; 
+            --text-dark: #1a1a1a; 
+            --bg-light: #fdfdfd; 
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+        body { color: var(--text-dark); background: #fff; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ========================================================= */
+        /* ШАПКА C НАВИГАЦИЕЙ                                       */
+        /* ========================================================= */
+        header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            background: rgba(0, 0, 0, 0.9); 
+            backdrop-filter: blur(10px); 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .header-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 16px 0; 
+        }
+
+        .logo-text { 
+            font-size: 32px; 
+            font-weight: 700; 
+            color: var(--btn-beige); 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            letter-spacing: 4px; 
+        }
+
+        .header-right { 
+            display: flex; 
+            align-items: center; 
+            gap: 25px; 
+        }
+
+        nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        nav a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-size: 11px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            padding: 10px 24px; 
+            border-radius: 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.25); 
+            background: transparent;
+            transition: var(--transition); 
+            display: inline-block;
+        }
+
+        nav a:hover, nav a.active { 
+            color: #1a1a1a; 
+            background: var(--btn-beige); 
+            border-color: var(--btn-beige); 
+            box-shadow: 0 4px 18px rgba(223, 196, 159, 0.35);
+        }
+
+        .header-phone { 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 14px; 
+            letter-spacing: 1px;
+            margin-left: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .header-phone:hover {
+            color: var(--btn-beige);
+        }
+
+        /* ========================================================= */
+        /* ОСНОВНОЙ КОНТЕНТ СТРАНИЦЫ                                 */
+        /* ========================================================= */
+        .page-header { padding: 150px 0 60px; background: #111; color: #fff; text-align: center; }
+        .page-header h1 { font-family: 'Playfair Display', serif; font-size: 42px; text-transform: uppercase; margin-bottom: 10px; }
+        .page-header p { color: #888; font-size: 15px; }
+
+        .packages-list { padding: 60px 0; display: flex; flex-direction: column; gap: 50px; }
+        
+        .package-detail-card {
+            background: #fff;
+            border: 1px solid #eee;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            border-radius: 4px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+        .package-detail-card:hover {
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .package-header-flex { display: flex; align-items: stretch; }
+        .package-main-img { width: 45%; object-fit: cover; min-height: 380px; }
+        .package-main-info { width: 55%; padding: 50px; display: flex; flex-direction: column; justify-content: center; }
+        
+        .package-title-price {
+            margin-bottom: 15px;
+        }
+
+        .package-main-info h2 { font-family: 'Playfair Display', serif; font-size: 34px; margin-bottom: 5px; }
+        
+        /* СТИЛИ ДЛЯ ЦЕНЫ */
+        .package-price {
+            display: inline-block;
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            background: rgba(223, 196, 159, 0.25);
+            padding: 4px 14px;
+            border-radius: 4px;
+            border-left: 3px solid var(--btn-beige);
+            margin-bottom: 15px;
+        }
+
+        .package-main-info p { color: #666; font-size: 15px; margin-bottom: 30px; line-height: 1.7; }
+
+        .details-toggle-btn {
+            background: #f9f9f9;
+            border: none;
+            border-top: 1px solid #eee;
+            padding: 18px 30px;
+            width: 100%;
+            text-align: left;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+
+        .details-toggle-btn:hover { background: var(--btn-beige); color: #1a1a1a; }
+        
+        .details-content {
+            display: none;
+            padding: 40px;
+            background: #fafafa;
+            border-top: 1px solid #eee;
+        }
+
+        .details-content.open { display: block; }
+        
+        .work-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px; }
+        .work-block h4 { font-size: 14px; text-transform: uppercase; color: #1a1a1a; border-bottom: 2px solid var(--btn-beige); padding-bottom: 8px; margin-bottom: 15px; letter-spacing: 1px; }
+        .work-block ul { list-style: none; }
+        .work-block ul li { font-size: 13px; color: #555; margin-bottom: 10px; position: relative; padding-left: 18px; line-height: 1.5; }
+        .work-block ul li::before { content: "✓"; position: absolute; left: 0; color: var(--btn-beige); font-weight: bold; }
+
+        .btn-order { display: inline-block; padding: 16px 35px; background: var(--btn-beige); color: #1a1a1a; text-decoration: none; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; transition: var(--transition); border-radius: 2px; }
+        .btn-order:hover { background: var(--btn-beige-hover); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+
+        footer { background: #111; color: rgba(255,255,255,0.5); padding: 40px 0; text-align: center; font-size: 13px; margin-top: 60px; }
+
+        @media (max-width: 992px) {
+            .package-header-flex { flex-direction: column; }
+            .package-main-img, .package-main-info { width: 100%; }
+            .package-main-img { height: 260px; min-height: auto; }
+            .package-main-info { padding: 30px; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ШАПКА -->
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo-text">INSTROY</a>
+                <div class="header-right">
+                    <nav>
+                        <a href="services.html" class="active">Услуги</a>
+                        <a href="anketa.html">Анкета</a>
+                        <a href="contacts.html">Контакты</a>
+                    </nav>
+                    <a href="tel:+79199282678" class="header-phone">8 (919) 928-26-78</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <div class="container">
+            <h1>Пакеты ремонтных работ</h1>
+            <p>Выберите оптимальный вариант отделки для вашей квартиры</p>
+        </div>
+    </div>
+
+    <section class="packages-list">
+        <div class="container">
+
+            <!-- Пакет 1: Стандарт -->
+            <div class="package-detail-card" style="margin-bottom: 40px;">
+                <div class="package-header-flex">
+                    <img src="images/standart.jpg" class="package-main-img" alt="Пакет Стандарт">
+                    <div class="package-main-info">
+                        <div class="package-title-price">
+                            <h2>Пакет «Стандарт»</h2>
+                            <div class="package-price">от 28 000 ₽ / м²</div>
+                        </div>
+                        <p>Практичное и экономное решение для быстрой подготовки квартиры к проживанию или сдаче в аренду. Включает базовые работы и качественные отделочные материалы.</p>
+                        <div>
+                            <a href="anketa.html" class="btn-order">Заказать «Стандарт»</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="details-toggle-btn" onclick="toggleDetails('details-1', this)">
+                    <span>Подробный состав работ по пакету</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="details-content" id="details-1">
+                    <div class="work-grid">
+                        <div class="work-block">
+                            <h4>Черновые работы</h4>
+                            <ul>
+                                <li>Частичное выравнивание стен</li>
+                                <li>Устройство самонивелирующейся стяжки</li>
+                                <li>Грунтование всех поверхностей</li>
+                            </ul>
+                        </div>
+                        <div class="work-block">
+                            <h4>Инженерия</h4>
+                            <ul>
+                                <li>Разводка базовой электрики</li>
+                                <li>Подключение сантехприборов</li>
+                                <li>Установка розеток и выключателей</li>
+                            </ul>
+                        </div>
+                        <div class="work-block">
+                            <h4>Чистовая отделка</h4>
+                            <ul>
+                                <li>Поклейка флизелиновых обоев</li>
+                                <li>Укладка ламината 33 класса</li>
+                                <li>Натяжные потолки</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пакет 2: Комфорт -->
+            <div class="package-detail-card" style="margin-bottom: 40px;">
+                <div class="package-header-flex">
+                    <img src="images/komfort.jpg" class="package-main-img" alt="Пакет Комфорт">
+                    <div class="package-main-info">
+                        <div class="package-title-price">
+                            <h2>Пакет «Комфорт»</h2>
+                            <div class="package-price">от 32 000 ₽ / м²</div>
+                        </div>
+                        <p>Баланс цены, долговечности и эстетики. Идеально подходит для комфортного проживания семьи.</p>
+                        <div>
+                            <a href="anketa.html" class="btn-order">Заказать «Комфорт»</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="details-toggle-btn" onclick="toggleDetails('details-2', this)">
+                    <span>Подробный состав работ по пакету</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="details-content" id="details-2">
+                    <div class="work-grid">
+                        <div class="work-block">
+                            <h4>Черновые работы</h4>
+                            <ul>
+                                <li>Штукатурка стен</li>
+                                <li>Устройство наливного пола</li>
+                                <li>Гидроизоляция мокрых зон</li>
+                            </ul>
+                        </div>
+                        <div class="work-block">
+                            <h4>Инженерия</h4>
+                            <ul>
+                                <li>Монтаж натяжного потолка</li>
+                                <li>Премиум обои</li>
+                                <li>Установка розеток и выключателей</li>
+                            </ul>
+                        </div>
+                        <div class="work-block">
+                            <h4>Чистовая отделка</h4>
+                            <ul>
+                                <li>Укладка керамогранита в санузле</li>
+                                <li>Добавление акцентного керамогранита</li>
+                                <li>Мебелирование Сан. узла</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пакет 3: Комфорт + -->
+            <div class="package-detail-card" style="margin-bottom: 40px;">
+                <div class="package-header-flex">
+                    <img src="images/komfort-plus.jpg" class="package-main-img" alt="Пакет Комфорт +">
+                    <div class="package-main-info">
+                        <div class="package-title-price">
+                            <h2>Пакет «Комфорт +»</h2>
+                            <div class="package-price">от 37 500 ₽ / м²</div>
+                        </div>
+                        <p>Улучшенная отделка Комфорт с покраской стен в цвета на ваш выбор.</p>
+                        <div>
+                            <a href="anketa.html" class="btn-order">Заказать «Комфорт +»</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="details-toggle-btn" onclick="toggleDetails('details-3', this)">
+                    <span>Подробный состав работ по пакету</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="details-content" id="details-3">
+                    <div class="work-grid">
+                        <div class="work-block">
+                            <h4>Дизайн и подготовка</h4>
+                            <ul>
+                                <li>Разработка дизайн-проекта</li>
+                                <li>Шпатлевка стен под покраску Q4</li>
+                                <li>Монтаж гипсокартонных коробов</li>
+                            </ul>
+                        </div>
+                        <div class="work-block">
+                            <h4>Инженерия</h4>
+                            <ul>
+                                <li>Швы из эпоксидной затирки</li>
+                                <li>Установка короба для вытяжки</li>
+                                <li>Установка розеток и выключателей</li>
+                            </ul>
+                        </div>
+                        <div class="work-block">
+                            <h4>Чистовая отделка</h4>
+                            <ul>
+                                <li>Укладка замкового кварцвинила или ламината</li>
+                                <li>Устройство люков скрытого монтажа</li>
+                                <li>Сантехника премиум-брендов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Пакет 4: Премиум -->
+            <div class="package-detail-card">
+                <div class="package-header-flex">
+                    <img src="images/premium.jpg" class="package-main-img" alt="Пакет Премиум">
+                    <div class="package-main-info">
+                        <div class="package-title-price">
+                            <h2>Пакет «Премиум»</h2>
+                            <div class="package-price">от 50 000 ₽ / м²</div>
+                        </div>
+                        <p>Эксклюзивное пространство с авторским надзором. Включает комплексную шумоизоляцию, двери скрытого монтажа (Invisible) и элементы "Умного дома".</p>
+                        <div>
+                            <a href="anketa.html" class="btn-order">Заказать «Премиум»</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="details-toggle-btn" onclick="toggleDetails('details-4', this)">
+                    <span>Подробный состав работ по пакету</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </button>
+                <div class="details-content" id="details-4">
+                    <div class="work-grid">
+                        <div class="work-block">
+                            <h4>Проектирование и надзор</h4>
+                            <ul>
+                                <li>Авторский надзор дизайнером</li>
+                                <li>Укладка плитки в зоне прихожей</li>
+                                <li>Сложные декоративные элементы</li>
+                            </ul>
+                        </div>
+                        <div class="work-block">
+                            <h4>Инженерия</h4>
+                            <ul>
+                                <li>Устройство теплого пола</li>
+                                <li>Освещение на ваш выбор</li>
+                                <li>Устройство натяжного потолка</li>
+                            </ul>
+                        </div>
+                        <div class="work-block">
+                            <h4>Чистовая отделка</h4>
+                            <ul>
+                                <li>Крупноформатный керамогранит</li>
+                                <li>Покрытие стен декоративной штукатуркой</li>
+                                <li>Керамогранит Премиум брендов</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 INSTROY. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleDetails(id, btn) {
+            const content = document.getElementById(id);
+            const icon = btn.querySelector('i');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.className = 'fa-solid fa-chevron-down';
+            } else {
+                content.classList.add('open');
+                icon.className = 'fa-solid fa-chevron-up';
+            }
+        }
+    </script>
+</body>
+</html>

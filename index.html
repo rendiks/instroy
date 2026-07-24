@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INSTROY — Строительство и ремонт под ключ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root { 
+            --btn-beige: #dfc49f; 
+            --btn-beige-hover: #eadaaf; 
+            --text-dark: #1a1a1a; 
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
+        body { color: var(--text-dark); background: #fff; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* ========================================================= */
+        /* ЕДИНАЯ ШАПКА ДЛЯ ВСЕХ СТРАНИЦ                              */
+        /* ========================================================= */
+        header { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            background: rgba(0, 0, 0, 0.9); 
+            backdrop-filter: blur(10px); 
+            z-index: 1000; 
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .header-container { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            padding: 16px 0; 
+        }
+
+        .logo-text { 
+            font-size: 32px; 
+            font-weight: 700; 
+            color: var(--btn-beige); 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            letter-spacing: 4px; 
+        }
+
+        .header-right { 
+            display: flex; 
+            align-items: center; 
+            gap: 25px; 
+        }
+
+        nav {
+            display: flex;
+            gap: 12px;
+        }
+
+        nav a { 
+            color: #ffffff; 
+            text-decoration: none; 
+            font-size: 11px; 
+            font-weight: 600; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            padding: 10px 24px; 
+            border-radius: 30px; 
+            border: 1px solid rgba(255, 255, 255, 0.25); 
+            background: transparent;
+            transition: var(--transition); 
+            display: inline-block;
+        }
+
+        nav a:hover { 
+            color: #1a1a1a; 
+            background: var(--btn-beige); 
+            border-color: var(--btn-beige); 
+            box-shadow: 0 4px 18px rgba(223, 196, 159, 0.35);
+            transform: translateY(-2px);
+        }
+
+        nav a.active { 
+            color: #1a1a1a; 
+            background: var(--btn-beige); 
+            border-color: var(--btn-beige); 
+        }
+
+        .header-phone { 
+            color: #fff; 
+            text-decoration: none; 
+            font-weight: 600; 
+            font-size: 14px; 
+            letter-spacing: 1px;
+            margin-left: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .header-phone:hover {
+            color: var(--btn-beige);
+        }
+
+        /* Главный баннер */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+        }
+
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 56px; margin-bottom: 20px; letter-spacing: 2px; }
+        .hero p { font-size: 18px; color: #ddd; max-width: 600px; margin: 0 auto 35px; }
+
+        .btn-hero {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--btn-beige);
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 30px;
+            transition: var(--transition);
+        }
+
+        .btn-hero:hover {
+            background: var(--btn-beige-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(223, 196, 159, 0.4);
+        }
+
+        footer { background: #111; color: rgba(255,255,255,0.5); padding: 40px 0; text-align: center; font-size: 13px; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 36px; }
+            nav { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="header-container">
+                <a href="index.html" class="logo-text">INSTROY</a>
+                <div class="header-right">
+                    <nav>
+    <a href="services.html">Услуги</a>
+    <a href="anketa.html">Анкета</a>
+    <a href="contacts.html">Контакты</a>
+</nav>
+                    <a href="tel:+79199282678" class="header-phone">8 (919) 928-26-78</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div>
+            <h1>Строительство & Ремонт</h1>
+            <p>Создаем современные интерьеры премиум-класса с гарантией качества на каждом этапе</p>
+            <a href="services.html" class="btn-hero">Смотреть пакеты услуг</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 INSTROY. Все права защищены.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
