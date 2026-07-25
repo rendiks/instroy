@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSTROY — Строительство и Ремонт</title>
+    <title>INSTROY — Пакетные предложения на ремонт квартир в Тюмени</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -13,9 +13,20 @@
             --text-dark: #1a1a1a; 
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); 
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Montserrat', sans-serif; }
-        body { background-color: #000; color: #fff; line-height: 1.6; overflow-x: hidden; }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body { 
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('b-3.jpg') center/cover no-repeat fixed;
+            color: #fff; 
+            line-height: 1.6; 
+            min-height: 100vh;
+        }
+
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         /* ========================================================= */
         /* ШАПКА                                                    */
@@ -25,24 +36,22 @@
             top: 0; 
             left: 0; 
             width: 100%; 
-            background: rgba(0, 0, 0, 0.85); 
+            background: rgba(0, 0, 0, 0.9); 
             backdrop-filter: blur(12px); 
             -webkit-backdrop-filter: blur(12px);
             z-index: 1000; 
             border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-
         .header-container { 
             display: flex; 
             align-items: center; 
             justify-content: space-between; 
-            padding: 18px 0; 
+            padding: 16px 0; 
         }
 
         .logo-text { 
-            font-size: 28px; 
+            font-size: 32px; 
             font-weight: 700; 
             color: var(--btn-beige); 
             text-transform: uppercase; 
@@ -53,23 +62,22 @@
         .header-right { 
             display: flex; 
             align-items: center; 
-            gap: 25px; 
+            gap: 20px; 
         }
 
-        /* Навигация для ПК */
-        nav.desktop-nav {
+        nav {
             display: flex;
             gap: 12px;
         }
 
-        nav.desktop-nav a { 
+        nav a { 
             color: #ffffff; 
             text-decoration: none; 
             font-size: 11px; 
             font-weight: 600; 
             text-transform: uppercase; 
             letter-spacing: 2px; 
-            padding: 10px 22px; 
+            padding: 10px 20px; 
             border-radius: 30px; 
             border: 1px solid rgba(255, 255, 255, 0.25); 
             background: transparent;
@@ -77,7 +85,7 @@
             display: inline-block;
         }
 
-        nav.desktop-nav a:hover, nav.desktop-nav a.active { 
+        nav a:hover { 
             color: #1a1a1a; 
             background: var(--btn-beige); 
             border-color: var(--btn-beige); 
@@ -90,161 +98,462 @@
             font-weight: 600; 
             font-size: 14px; 
             letter-spacing: 1px;
+            margin-left: 10px;
             transition: color 0.3s ease;
         }
 
         .header-phone:hover { color: var(--btn-beige); }
 
-        /* Иконка меню для смартфона */
         .mobile-menu-btn {
             display: none;
-            background: none;
-            border: none;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: var(--btn-beige);
-            font-size: 22px;
+            font-size: 20px;
+            padding: 8px 14px;
+            border-radius: 6px;
             cursor: pointer;
-            padding: 5px;
-        }
-
-        /* Мобильное выпадающее меню */
-        .mobile-nav-overlay {
-            display: none;
-            position: fixed;
-            top: 65px;
-            left: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.98);
-            border-bottom: 1px solid rgba(223, 196, 159, 0.2);
-            padding: 25px 20px;
-            flex-direction: column;
-            gap: 15px;
-            z-index: 999;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-        }
-
-        .mobile-nav-overlay.open { display: flex; }
-
-        .mobile-nav-overlay a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 13px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            padding: 12px 20px;
-            border-radius: 4px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-        }
-
-        .mobile-nav-overlay a:active {
-            background: var(--btn-beige);
-            color: #000;
-        }
-
-        /* ========================================================= */
-        /* ГЛАВНЫЙ ЭКРАН (ФОН С ЗАГОРОДНЫМ ДОМОМ)                    */
-        /* ========================================================= */
-        .hero {
-            position: relative;
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 120px 20px 60px;
-            /* Указан фон первого фото (b-3.jpg) и легкая прозрачность */
-            background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('b-3.jpg') center/cover no-repeat;
-        }
-
-        .hero-content {
-            max-width: 850px;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 56px;
-            font-weight: 600;
-            line-height: 1.15;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-            text-shadow: 0 2px 10px rgba(0,0,0,0.6);
-        }
-
-        .hero-title span {
-            font-style: italic;
-            font-weight: 400;
-            color: var(--btn-beige);
-        }
-
-        .hero-subtitle {
-            font-size: 18px;
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 40px;
-            font-weight: 300;
-            max-width: 650px;
-            margin-left: auto;
-            margin-right: auto;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .btn-main {
-            display: inline-block;
-            padding: 18px 38px;
-            background: var(--btn-beige);
-            color: #1a1a1a;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
             transition: var(--transition);
-            border-radius: 2px;
-            border: 1px solid var(--btn-beige);
+        }
+
+        /* ========================================================= */
+        /* РАЗДЕЛЫ И ЗАГОЛОВКИ                                      */
+        /* ========================================================= */
+        section {
+            padding: 100px 0 60px;
+        }
+
+        .section-header { 
+            text-align: center; 
+            margin-bottom: 50px;
+        }
+
+        .section-header h2 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 40px; 
+            text-transform: uppercase; 
+            margin-bottom: 12px; 
+            letter-spacing: 2px;
+        }
+
+        .section-header p { 
+            color: rgba(255, 255, 255, 0.7); 
+            font-size: 15px; 
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ========================================================= */
+        /* ГЛАВНЫЙ ЭКРАН (HERO)                                     */
+        /* ========================================================= */
+        #hero { 
+            padding: 220px 0 120px; 
+            text-align: center; 
+        }
+
+        #hero h1 { 
+            font-family: 'Playfair Display', serif; 
+            font-size: 52px; 
+            text-transform: uppercase; 
+            margin-bottom: 20px; 
+            line-height: 1.2;
+        }
+
+        #hero p { 
+            font-size: 18px; 
+            color: rgba(255, 255, 255, 0.85); 
+            max-width: 750px; 
+            margin: 0 auto 40px; 
+        }
+
+        .btn-main { 
+            display: inline-block; 
+            padding: 16px 36px; 
+            background: var(--btn-beige); 
+            color: #1a1a1a; 
+            text-decoration: none; 
+            font-size: 12px; 
+            font-weight: 700; 
+            text-transform: uppercase; 
+            letter-spacing: 2px; 
+            border-radius: 30px; 
+            transition: var(--transition);
         }
 
         .btn-main:hover {
             background: var(--btn-beige-hover);
-            border-color: var(--btn-beige-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(223, 196, 159, 0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(223, 196, 159, 0.4);
         }
 
-        .btn-secondary {
+        /* ========================================================= */
+        /* ПАКЕТЫ УСЛУГ (ГОРИЗОНТАЛЬНЫЕ КАРТОЧКИ)                    */
+        /* ========================================================= */
+        .packages-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .package-row-card {
+            background: #ffffff;
+            color: var(--text-dark);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .package-row-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+        }
+
+        .popular-card {
+            border: 2px solid var(--btn-beige);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: var(--btn-beige);
+            color: #1a1a1a;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 6px 14px;
+            border-radius: 20px;
+            z-index: 2;
+        }
+
+        .package-img {
+            width: 35%;
+            min-width: 280px;
+            position: relative;
+        }
+
+        .package-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .package-info {
+            width: 65%;
+            padding: 30px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .package-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+        }
+
+        .package-title {
+            font-size: 26px;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #1a1a1a;
+        }
+
+        .package-price {
+            font-size: 24px;
+            font-weight: 700;
+            color: #b5956a;
+        }
+
+        .package-price span {
+            font-size: 14px;
+            color: #666;
+            font-weight: 400;
+        }
+
+        .package-features {
+            list-style: none;
+            margin-bottom: 20px;
+        }
+
+        .package-features li {
+            font-size: 14px;
+            color: #444;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .package-features li i {
+            color: #b5956a;
+            margin-top: 4px;
+        }
+
+        .gift-item {
+            font-weight: 700;
+            color: #b5956a !important;
+        }
+
+        .package-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-more-details {
             background: transparent;
-            color: #fff;
-            border-color: rgba(255, 255, 255, 0.4);
+            border: 1px solid #1a1a1a;
+            color: #1a1a1a;
+            padding: 12px 20px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        .btn-secondary:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: #fff;
+        .btn-more-details:hover {
+            background: #1a1a1a;
             color: #fff;
+        }
+
+        .btn-order {
+            background: var(--btn-beige);
+            color: #1a1a1a;
+            padding: 12px 28px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
+            transition: var(--transition);
+        }
+
+        .btn-order:hover {
+            background: var(--btn-beige-hover);
         }
 
         /* ========================================================= */
-        /* АДАПТИВНОСТЬ                                             */
+        /* МОДАЛЬНОЕ ОКНО                                           */
         /* ========================================================= */
-        @media (max-width: 992px) {
-            nav.desktop-nav { display: none; }
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .modal-backdrop.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: #fff;
+            color: #1a1a1a;
+            width: 100%;
+            max-width: 650px;
+            max-height: 85vh;
+            border-radius: 12px;
+            padding: 30px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #888;
+        }
+
+        .modal-body-list {
+            overflow-y: auto;
+            margin-top: 20px;
+            padding-right: 10px;
+        }
+
+        .modal-section-title {
+            font-weight: 700;
+            background: #f4efea;
+            padding: 8px 12px;
+            margin: 15px 0 8px 0;
+            border-left: 4px solid #b5956a;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+
+        .modal-body-list ul {
+            list-style: none;
+            padding-left: 10px;
+        }
+
+        .modal-body-list li {
+            font-size: 13px;
+            padding: 6px 0;
+            border-bottom: 1px dashed #eee;
+            color: #444;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-body-list li::before {
+            content: "•";
+            color: #b5956a;
+            font-weight: bold;
+        }
+
+        /* ========================================================= */
+        /* СЕКЦИЯ АНКЕТЫ                                            */
+        /* ========================================================= */
+        .quiz-card {
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 8px;
+            padding: 50px;
+            max-width: 850px;
+            margin: 0 auto;
+            color: var(--text-dark);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+        }
+
+        .form-group { margin-bottom: 30px; padding-bottom: 25px; border-bottom: 1px solid #e8e8e8; }
+        .form-group:last-child { border-bottom: none; }
+        .form-label { display: block; font-size: 16px; font-weight: 600; margin-bottom: 6px; color: #1a1a1a; }
+        .form-hint { display: block; font-size: 13px; color: #666; margin-bottom: 14px; }
+        
+        .form-control {
+            width: 100%; padding: 14px 18px; border: 1px solid #ccc; border-radius: 4px;
+            font-size: 14px; outline: none; background: #fff; color: #1a1a1a; transition: var(--transition);
+        }
+
+        .form-control:focus { border-color: #b5956a; box-shadow: 0 0 0 3px rgba(223, 196, 159, 0.35); }
+
+        .options-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 10px; }
+
+        .custom-option {
+            display: flex; align-items: center; padding: 12px 16px; background: #f8f8f8;
+            border: 1px solid #e0e0e0; border-radius: 4px; cursor: pointer; transition: var(--transition);
+            font-size: 14px; color: #333;
+        }
+
+        .custom-option:hover { background: #f0eae1; border-color: var(--btn-beige); }
+        .custom-option input { margin-right: 12px; accent-color: #b5956a; width: 16px; height: 16px; cursor: pointer; }
+
+        .btn-submit {
+            display: block; width: 100%; padding: 18px; background: var(--btn-beige); color: #1a1a1a;
+            border: none; border-radius: 4px; font-size: 14px; font-weight: 700; text-transform: uppercase;
+            letter-spacing: 2px; cursor: pointer; transition: var(--transition); margin-top: 30px;
+        }
+
+        .btn-submit:hover { background: var(--btn-beige-hover); transform: translateY(-2px); box-shadow: 0 5px 20px rgba(0,0,0,0.2); }
+
+        /* ========================================================= */
+        /* СЕКЦИЯ КОНТАКТОВ                                          */
+        /* ========================================================= */
+        .contacts-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            gap: 30px; 
+        }
+
+        .contact-card { 
+            background: rgba(255, 255, 255, 0.96); 
+            padding: 45px 30px; 
+            border-radius: 8px; 
+            text-align: center; 
+            color: var(--text-dark);
+            transition: var(--transition);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+
+        .contact-card i { font-size: 36px; color: #b5956a; margin-bottom: 20px; }
+        .contact-card h3 { font-size: 16px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; color: #1a1a1a; }
+        .contact-card p, .contact-card a { color: #555; font-size: 15px; text-decoration: none; }
+        .contact-card a:hover { color: #b5956a; }
+
+        footer { 
+            background: rgba(0, 0, 0, 0.95); 
+            color: rgba(255,255,255,0.6); 
+            padding: 40px 0; 
+            text-align: center; 
+            font-size: 13px; 
+            border-top: 1px solid rgba(255,255,255,0.08); 
+        }
+
+        /* ========================================================= */
+        /* АДАПТИВ                                                  */
+        /* ========================================================= */
+        @media (max-width: 850px) {
+            .package-row-card {
+                flex-direction: column;
+            }
+            .package-img {
+                width: 100%;
+                height: 220px;
+            }
+            .package-info {
+                width: 100%;
+                padding: 25px 20px;
+            }
+            .package-top {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
-            .hero-title { font-size: 38px; }
-            .hero-subtitle { font-size: 15px; }
-            .logo-text { font-size: 22px; letter-spacing: 2px; }
-            .header-phone { font-size: 12px; }
-        }
+            
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                display: none;
+                box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
 
-        @media (max-width: 576px) {
-            .hero-buttons { flex-direction: column; width: 100%; }
-            .btn-main { width: 100%; text-align: center; }
+            nav.open { display: flex; }
+            nav a { text-align: center; width: 100%; }
+            .header-phone { display: none; }
+            #hero h1 { font-size: 36px; }
+            .quiz-card { padding: 30px 20px; }
+            section { padding: 80px 0 40px; }
         }
     </style>
 </head>
@@ -254,63 +563,495 @@
     <header>
         <div class="container">
             <div class="header-container">
-                <a href="index.html" class="logo-text">INSTROY</a>
-                
+                <a href="#hero" class="logo-text">INSTROY</a>
                 <div class="header-right">
-                    <!-- ПК Навигация -->
-                    <nav class="desktop-nav">
-                        <a href="services.html">Услуги</a>
-                        <a href="anketa.html">Анкета</a>
-                        <a href="contacts.html">Контакты</a>
+                    <nav id="nav-menu">
+                        <a href="#packages">Пакеты услуг</a>
+                        <a href="#anketa">Анкета</a>
+                        <a href="#contacts">Контакты</a>
                     </nav>
-
                     <a href="tel:+79199282678" class="header-phone">8 (919) 928-26-78</a>
-
-                    <!-- Кнопка мобильного меню -->
-                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Открыть меню">
-                        <i class="fa-solid fa-bars" id="menu-icon"></i>
+                    <button class="mobile-menu-btn" id="menu-toggle" aria-label="Открыть меню">
+                        <i class="fa-solid fa-bars"></i>
                     </button>
                 </div>
             </div>
         </div>
     </header>
 
-    <!-- Мобильное выпадающее меню -->
-    <div class="mobile-nav-overlay" id="mobileNav">
-        <a href="services.html">Услуги</a>
-        <a href="anketa.html">Анкета</a>
-        <a href="contacts.html">Контакты</a>
+    <!-- ГЛАВНЫЙ ЭКРАН -->
+    <section id="hero">
+        <div class="container">
+            <h1>Пакетные предложения на ремонт квартир в Тюмени</h1>
+            <p>Сделаем все сами, купим материалы, сделаем дизайн-проект и произведем ремонт для вас!</p>
+            <a href="#anketa" class="btn-main">Заполнить анкету проекта</a>
+        </div>
+    </section>
+
+    <!-- ПАКЕТЫ УСЛУГ -->
+    <section id="packages">
+        <div class="container">
+            <div class="section-header">
+                <h2>Наши пакеты</h2>
+                <p>Прозрачные тарифы и комплексный подход к ремонту вашего объекта</p>
+            </div>
+
+            <div class="packages-list">
+                
+                <!-- ПАКЕТ 1: СТАНДАРТ -->
+                <div class="package-row-card">
+                    <div class="package-img">
+                        <img src="p1.jpg" alt="Пакет Стандарт" onerror="this.src='https://via.placeholder.com/400x300?text=Стандарт'">
+                    </div>
+                    <div class="package-info">
+                        <div>
+                            <div class="package-top">
+                                <h3 class="package-title">Стандарт</h3>
+                                <div class="package-price">от 28 000 ₽ <span>/ м²</span></div>
+                            </div>
+                            <ul class="package-features">
+                                <li><i class="fa-solid fa-check"></i> Бюджетный качественный ремонт</li>
+                                <li><i class="fa-solid fa-check"></i> Сами закупим все материалы по смете и доставим на объект</li>
+                                <li><i class="fa-solid fa-check"></i> Выполним абсолютно все ремонтные работы</li>
+                                <li><i class="fa-solid fa-check"></i> Уберем за собой весь мусор и проведем полный клининг</li>
+                                <li class="gift-item"><i class="fa-solid fa-gift"></i> Технический проект в подарок!</li>
+                            </ul>
+                        </div>
+                        <div class="package-actions">
+                            <button class="btn-more-details" onclick="openModal('standard')">Полный список работ</button>
+                            <a href="#anketa" class="btn-order">Заказать</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ПАКЕТ 2: КОМФОРТ -->
+                <div class="package-row-card">
+                    <div class="package-img">
+                        <img src="p2.jpg" alt="Пакет Комфорт" onerror="this.src='https://via.placeholder.com/400x300?text=Комфорт'">
+                    </div>
+                    <div class="package-info">
+                        <div>
+                            <div class="package-top">
+                                <h3 class="package-title">Комфорт</h3>
+                                <div class="package-price">от 32 000 ₽ <span>/ м²</span></div>
+                            </div>
+                            <ul class="package-features">
+                                <li><i class="fa-solid fa-check"></i> Серьезный капитальный ремонт</li>
+                                <li><i class="fa-solid fa-check"></i> Сами закупим все материалы по смете и доставим на объект</li>
+                                <li><i class="fa-solid fa-check"></i> Выполним абсолютно все ремонтные работы</li>
+                                <li><i class="fa-solid fa-check"></i> Уберем за собой весь мусор и проведем полный клининг</li>
+                                <li class="gift-item"><i class="fa-solid fa-gift"></i> Технический проект в подарок!</li>
+                            </ul>
+                        </div>
+                        <div class="package-actions">
+                            <button class="btn-more-details" onclick="openModal('comfort')">Полный список работ</button>
+                            <a href="#anketa" class="btn-order">Заказать</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ПАКЕТ 3: КОМФОРТ + -->
+                <div class="package-row-card popular-card">
+                    <div class="popular-badge">Популярный</div>
+                    <div class="package-img">
+                        <img src="p3.jpg" alt="Пакет Комфорт +" onerror="this.src='https://via.placeholder.com/400x300?text=Комфорт+'">
+                    </div>
+                    <div class="package-info">
+                        <div>
+                            <div class="package-top">
+                                <h3 class="package-title">Комфорт +</h3>
+                                <div class="package-price">от 37 500 ₽ <span>/ м²</span></div>
+                            </div>
+                            <ul class="package-features">
+                                <li><i class="fa-solid fa-check"></i> Стильный ремонт, разнообразие материалов</li>
+                                <li><i class="fa-solid fa-check"></i> Сами закупим все материалы по смете и доставим на объект</li>
+                                <li><i class="fa-solid fa-check"></i> Выполним абсолютно все ремонтные работы</li>
+                                <li><i class="fa-solid fa-check"></i> Уберем за собой весь мусор и проведем полный клининг</li>
+                                <li class="gift-item"><i class="fa-solid fa-gift"></i> Дизайн-проект с визуализацией в подарок!</li>
+                            </ul>
+                        </div>
+                        <div class="package-actions">
+                            <button class="btn-more-details" onclick="openModal('comfort-plus')">Полный список работ</button>
+                            <a href="#anketa" class="btn-order">Заказать</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ПАКЕТ 4: ПРЕМИУМ -->
+                <div class="package-row-card">
+                    <div class="package-img">
+                        <img src="p4.jpg" alt="Пакет Премиум" onerror="this.src='https://via.placeholder.com/400x300?text=Премиум'">
+                    </div>
+                    <div class="package-info">
+                        <div>
+                            <div class="package-top">
+                                <h3 class="package-title">Премиум</h3>
+                                <div class="package-price">от 50 000 ₽ <span>/ м²</span></div>
+                            </div>
+                            <ul class="package-features">
+                                <li><i class="fa-solid fa-check"></i> Ремонт под ключ!</li>
+                                <li><i class="fa-solid fa-check"></i> Разработка дизайн-проекта</li>
+                                <li><i class="fa-solid fa-check"></i> Проведение черновых и чистовых работ</li>
+                                <li><i class="fa-solid fa-check"></i> Используем только качественные и проверенные материалы</li>
+                                <li><i class="fa-solid fa-check"></i> Финишные работы и клининг</li>
+                                <li class="gift-item"><i class="fa-solid fa-gift"></i> Дизайн-проект с визуализацией в подарок!</li>
+                            </ul>
+                        </div>
+                        <div class="package-actions">
+                            <button class="btn-more-details" onclick="openModal('premium')">Полный список работ</button>
+                            <a href="#anketa" class="btn-order">Заказать</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- МОДАЛЬНОЕ ОКНО С ПОЛНЫМ СПИСКОМ РАБОТ -->
+    <div id="modal-details" class="modal-backdrop">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h3 id="modal-title">Полный перечень работ</h3>
+            <div id="modal-body" class="modal-body-list">
+                <!-- Сюда динамически подставляется список из JS -->
+            </div>
+        </div>
     </div>
 
-    <!-- ГЛАВНЫЙ ЭКРАН -->
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1 class="hero-title">Строительство <span>&</span> Ремонт</h1>
-                <p class="hero-subtitle">
-                    Создаем современные интерьеры премиум-класса с гарантией качества на каждом этапе
-                </p>
-                <div class="hero-buttons">
-                    <a href="services.html" class="btn-main">Смотреть пакеты услуг</a>
-                    <a href="anketa.html" class="btn-main btn-secondary">Рассчитать стоимость</a>
+    <!-- АНКЕТА -->
+    <section id="anketa">
+        <div class="container">
+            <div class="section-header">
+                <h2>Анкета проекта</h2>
+                <p>Укажите параметры вашего объекта для составления предварительной сметы и разработки проекта</p>
+            </div>
+
+            <div class="quiz-card">
+                <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+                    
+                    <!-- 1 -->
+                    <div class="form-group">
+                        <label class="form-label">1. Имя</label>
+                        <span class="form-hint">Ваше ФИО</span>
+                        <input type="text" name="1_Имя" class="form-control" placeholder="Иванов Иван Иванович" required>
+                    </div>
+
+                    <!-- 2 -->
+                    <div class="form-group">
+                        <label class="form-label">2. Адрес объекта</label>
+                        <span class="form-hint">Укажите адрес квартиры, улица и номер квартиры</span>
+                        <input type="text" name="2_Адрес_объекта" class="form-control" placeholder="г. Тюмень, ул. Ленина, д. 10, кв. 25" required>
+                    </div>
+
+                    <!-- 3 -->
+                    <div class="form-group">
+                        <label class="form-label">3. Есть ли план помещения</label>
+                        <span class="form-hint">План помещения от застройщика или планировка помещения</span>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="3_План_помещения" value="Да, есть план" required> Да, есть</label>
+                            <label class="custom-option"><input type="radio" name="3_План_помещения" value="Нет плана"> Нет плана</label>
+                            <label class="custom-option"><input type="radio" name="3_План_помещения" value="Нужен замер"> Нужен замер</label>
+                        </div>
+                    </div>
+
+                    <!-- 4 -->
+                    <div class="form-group">
+                        <label class="form-label">4. Нужно ли добавить розетки</label>
+                        <span class="form-hint">Если нужно добавить либо перенести розетки, например для зоны TV</span>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="4_Розетки" value="Да, добавить/перенести" required> Да, нужно</label>
+                            <label class="custom-option"><input type="radio" name="4_Розетки" value="Нет, оставить как есть"> Нет, оставить как есть</label>
+                        </div>
+                    </div>
+
+                    <!-- 5 -->
+                    <div class="form-group">
+                        <label class="form-label">5. Нужно ли перенести выключатели</label>
+                        <span class="form-hint">Если нужно поднять от пола, либо перенести в другое место</span>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="5_Выключатели" value="Да, перенести" required> Да, нужно</label>
+                            <label class="custom-option"><input type="radio" name="5_Выключатели" value="Нет, оставить"> Нет, оставить</label>
+                        </div>
+                    </div>
+
+                    <!-- 6 -->
+                    <div class="form-group">
+                        <label class="form-label">6. Какое хотите покрытие стен</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="6_Покрытие_стен" value="Обои" required> Обои</label>
+                            <label class="custom-option"><input type="radio" name="6_Покрытие_стен" value="Краска"> Краска</label>
+                            <label class="custom-option"><input type="radio" name="6_Покрытие_стен" value="Декоративная штукатурка"> Декоративная штукатурка</label>
+                        </div>
+                    </div>
+
+                    <!-- 7 -->
+                    <div class="form-group">
+                        <label class="form-label">7. Цветовая гамма</label>
+                        <span class="form-hint">Напишите несколько цветов, которые хотите видеть в дизайн-проекте</span>
+                        <input type="text" name="7_Цветовая_гамма" class="form-control" placeholder="Например: бежевый, серый, с акцентами дерева" required>
+                    </div>
+
+                    <!-- 8 -->
+                    <div class="form-group">
+                        <label class="form-label">8. Нужен ли кондиционер</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="8_Кондиционер" value="Да" required> Да</label>
+                            <label class="custom-option"><input type="radio" name="8_Кондиционер" value="Нет"> Нет</label>
+                        </div>
+                    </div>
+
+                    <!-- 9 -->
+                    <div class="form-group">
+                        <label class="form-label">9. Напольное покрытие</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="9_Напольное_покрытие" value="Кварцвинил" required> Кварцвинил</label>
+                            <label class="custom-option"><input type="radio" name="9_Напольное_покрытие" value="Ламинат"> Ламинат</label>
+                        </div>
+                    </div>
+
+                    <!-- 10 -->
+                    <div class="form-group">
+                        <label class="form-label">10. Будет ли плитка в зоне прихожей</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="10_Плитка_в_прихожей" value="Да" required> Да</label>
+                            <label class="custom-option"><input type="radio" name="10_Плитка_в_прихожей" value="Нет"> Нет</label>
+                        </div>
+                    </div>
+
+                    <!-- 11 -->
+                    <div class="form-group">
+                        <label class="form-label">11. Выберите керамогранит для сан. узла</label>
+                        <span class="form-hint">Укажите ваш вариант или предпочтение по фактуре/цвету</span>
+                        <input type="text" name="11_Керамогранит_санузел" class="form-control" placeholder="Например: под мрамор 60х60, светлый" required>
+                    </div>
+
+                    <!-- 12 -->
+                    <div class="form-group">
+                        <label class="form-label">12. Выберите акцентный керамогранит для сан. узла</label>
+                        <span class="form-hint">Второй вариант керамогранита в район зеркала</span>
+                        <input type="text" name="12_Акцентный_керамогранит" class="form-control" placeholder="Например: под дерево или темный с текстурой" required>
+                    </div>
+
+                    <!-- 13 -->
+                    <div class="form-group">
+                        <label class="form-label">13. Теплый пол</label>
+                        <span class="form-hint">Если нужен теплый пол, выберите где (можно выбрать несколько вариантов)</span>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="checkbox" name="13_Теплый_пол[]" value="Прихожая"> Прихожая</label>
+                            <label class="custom-option"><input type="checkbox" name="13_Теплый_пол[]" value="Сан узел"> Сан узел</label>
+                            <label class="custom-option"><input type="checkbox" name="13_Теплый_пол[]" value="Балкон"> Балкон</label>
+                            <label class="custom-option"><input type="checkbox" name="13_Теплый_пол[]" value="Не нужен"> Не нужен</label>
+                        </div>
+                    </div>
+
+                    <!-- 14 -->
+                    <div class="form-group">
+                        <label class="form-label">14. Нужен ли фартук для кухни</label>
+                        <div class="options-grid">
+                            <label class="custom-option"><input type="radio" name="14_Фартук_кухни" value="Да" required> Да</label>
+                            <label class="custom-option"><input type="radio" name="14_Фартук_кухни" value="Нет"> Нет</label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Телефон для обратной связи</label>
+                        <input type="tel" name="Телефон" class="form-control" placeholder="+7 (999) 000-00-00" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Отправить анкету</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- КОНТАКТЫ -->
+    <section id="contacts">
+        <div class="container">
+            <div class="section-header">
+                <h2>Контакты</h2>
+                <p>Мы готовы ответить на любые вопросы и обсудить ваш проект</p>
+            </div>
+
+            <div class="contacts-grid">
+                <div class="contact-card">
+                    <i class="fa-solid fa-phone"></i>
+                    <h3>Телефон</h3>
+                    <p><a href="tel:+79199282678">8 (919) 928-26-78</a></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fa-solid fa-envelope"></i>
+                    <h3>Email</h3>
+                    <p><a href="mailto:info@instroy.ru">info@instroy.ru</a></p>
+                </div>
+                <div class="contact-card">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <h3>Офис</h3>
+                    <p>г. Тюмень, ул. Ленина, д. 10</p>
                 </div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 INSTROY. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <!-- СКРИПТЫ -->
     <script>
-        function toggleMobileMenu() {
-            const nav = document.getElementById('mobileNav');
-            const icon = document.getElementById('menu-icon');
-            
-            nav.classList.toggle('open');
-            
-            if (nav.classList.contains('open')) {
-                icon.className = 'fa-solid fa-xmark';
+        // Мобильное меню
+        const menuToggle = document.getElementById('menu-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        const icon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('open');
+            if (navMenu.classList.contains('open')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
             } else {
-                icon.className = 'fa-solid fa-bars';
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
             }
+        });
+
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('open');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Модальное окно полного списка работ
+        const workLists = {
+            standard: `
+                <div class="modal-section-title">Основная отделка</div>
+                <ul>
+                    <li>Отделочные материалы и работы</li>
+                    <li>Укладка ламината 32 класса + подложка</li>
+                    <li>Плинтус ПВХ</li>
+                    <li>Обои</li>
+                    <li>Натяжной потолок</li>
+                    <li>Оконные откосы</li>
+                    <li>Межкомнатные двери и фурнитура</li>
+                    <li>Разводка сантехники</li>
+                </ul>
+                <div class="modal-section-title">В ванной комнате</div>
+                <ul>
+                    <li>Керамогранит 60/60</li>
+                    <li>Тумба-раковина подвесная/напольная</li>
+                    <li>Смеситель для раковины</li>
+                    <li>Инсталляция с кнопкой и подвесным унитазом</li>
+                    <li>Ванна с фронтальной панелью</li>
+                    <li>Смеситель для ванны</li>
+                </ul>
+            `,
+            comfort: `
+                <div class="modal-section-title">Основная отделка</div>
+                <ul>
+                    <li>Отделочные материалы и работы</li>
+                    <li>Клеевой кварцвинил / ламинат</li>
+                    <li>Плинтус ПВХ</li>
+                    <li>Обои под покраску</li>
+                    <li>Натяжной потолок</li>
+                    <li>Межкомнатные двери и фурнитура</li>
+                    <li>Выравнивание стен под правило</li>
+                    <li>Разводка сантехники 5 точек</li>
+                    <li>Наливной пол</li>
+                </ul>
+                <div class="modal-section-title">В ванной комнате</div>
+                <ul>
+                    <li>Керамогранит 60/60 или 20/29</li>
+                    <li>Инсталляция</li>
+                    <li>Ванна с фронт. панелью</li>
+                    <li>Тумба-раковина подвесная</li>
+                    <li>Зеркало с подсветкой</li>
+                    <li>Смесители</li>
+                    <li>Полотенцесушитель</li>
+                </ul>
+            `,
+            'comfort-plus': `
+                <div class="modal-section-title">Основная отделка</div>
+                <ul>
+                    <li>Отделочные материалы и работы</li>
+                    <li>Замковый/клеевой кварцвинил / ламинат</li>
+                    <li>Плинтуса дюрополимер/пвх</li>
+                    <li>Выравнивание стен</li>
+                    <li>Стены под покраску</li>
+                    <li>Декоративная штукатурка до 25м2</li>
+                    <li>Натяжной потолок</li>
+                    <li>Межкомнатные двери / двери скрытого монтажа</li>
+                    <li>Разводка сантехники 7 точек</li>
+                    <li>Откосы - покраска + шпатлевка</li>
+                    <li>Наливной пол</li>
+                </ul>
+                <div class="modal-section-title">В ванной комнате</div>
+                <ul>
+                    <li>Керамогранит 120/60, 60/60</li>
+                    <li>Инсталляция</li>
+                    <li>Ванна облицованная керамогранитом / Душевой поддон</li>
+                    <li>Раковина с подвесной тумбой</li>
+                    <li>Смесители + гигиенический душ</li>
+                    <li>Зеркало с подсветкой</li>
+                    <li>Электрический полотенцесушитель</li>
+                </ul>
+            `,
+            premium: `
+                <div class="modal-section-title">Основная отделка</div>
+                <ul>
+                    <li>Отделочные материалы и работы</li>
+                    <li>Замковый/клеевой кварцвинил / ламинат</li>
+                    <li>Плинтуса дюрополимер/пвх</li>
+                    <li>Выравнивание стен</li>
+                    <li>Стены под покраску</li>
+                    <li>Декоративная штукатурка до 50м2</li>
+                    <li>Натяжной потолок</li>
+                    <li>Межкомнатные двери / двери скрытого монтажа</li>
+                    <li>Разводка сантехники 7 точек</li>
+                    <li>Откосы - покраска + шпатлевка</li>
+                    <li>Наливной пол</li>
+                </ul>
+                <div class="modal-section-title">В ванной комнате</div>
+                <ul>
+                    <li>Керамогранит 120/60, 60/60</li>
+                    <li>Инсталляция</li>
+                    <li>Ванна облицованная керамогранитом / Душевой поддон</li>
+                    <li>Раковина с подвесной тумбой</li>
+                    <li>Смесители + гигиенический душ</li>
+                    <li>Зеркало с подсветкой</li>
+                    <li>Электрический полотенцесушитель</li>
+                    <li>Теплый пол</li>
+                </ul>
+            `
+        };
+
+        const modal = document.getElementById('modal-details');
+        const modalTitle = document.getElementById('modal-title');
+        const modalBody = document.getElementById('modal-body');
+
+        function openModal(packageKey) {
+            const titles = {
+                standard: 'Пакет «Стандарт» — полный список',
+                comfort: 'Пакет «Комфорт» — полный список',
+                'comfort-plus': 'Пакет «Комфорт +» — полный список',
+                premium: 'Пакет «Премиум» — полный список'
+            };
+
+            modalTitle.innerText = titles[packageKey] || 'Список работ';
+            modalBody.innerHTML = workLists[packageKey] || 'Описание обновляется...';
+            modal.classList.add('active');
         }
+
+        function closeModal() {
+            modal.classList.remove('active');
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
     </script>
 </body>
 </html>
